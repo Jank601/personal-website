@@ -13,7 +13,7 @@ export default function Home({ recentPosts }) {
         window.dataLayer.push(arguments);
       }
       gtag('js', new Date());
-      gtag('config', 'js?id=G-4R0XG387HZD');
+      gtag('config', 'G-4R0XG387HZD');
     };
   }, []);
   return (
