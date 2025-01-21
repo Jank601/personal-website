@@ -4,12 +4,17 @@ import ReactGA from 'react-ga4';
 
 export default function Home({ recentPosts }) { 
   useEffect(() => {
-    const trackingId = process.env.REACT_APP_GA_TRACKING_ID; // No hardcoded fallback
+    console.log('Running useEffect for Google Analytics');
+    const trackingId = process.env.REACT_APP_GA_TRACKING_ID;
+  
+    console.log('Google Analytics Tracking ID:', trackingId);
   
     if (trackingId) {
       try {
         ReactGA.initialize(trackingId);
+        console.log('Google Analytics initialized with Tracking ID:', trackingId);
         ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
+        console.log('Pageview event sent for:', window.location.pathname);
       } catch (error) {
         console.error('Error initializing Google Analytics:', error);
       }
