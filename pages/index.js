@@ -1,20 +1,16 @@
-import { getAllPosts } from '../lib/posts'; 
+import { getAllPosts } from '../lib/posts';
+import { useEffect } from 'react';
+import ReactGA from 'react-ga4'; 
 
 export default function Home({ recentPosts }) { 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=js?id=G-4R0XG387HZ`;
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        window.dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-4R0XG387HZD');
-    };
+    const trackingId = process.env.REACT_APP_GA_TRACKING_ID;
+    if (trackingId) {
+      ReactGA.initialize(trackingId);
+      ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
+    } else {
+      console.error('Google Analytics tracking ID is not defined.');
+    }
   }, []);
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
