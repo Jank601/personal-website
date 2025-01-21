@@ -1,6 +1,21 @@
-import { getAllPosts } from '../lib/posts';  // Add this line at the top
+import { getAllPosts } from '../lib/posts'; 
 
-export default function Home({ recentPosts }) {  // Change this line to accept recentPosts
+export default function Home({ recentPosts }) { 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=js?id=G-4R0XG387HZ`;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'js?id=G-4R0XG387HZD');
+    };
+  }, []);
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Navigation Bar */}
