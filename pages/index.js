@@ -6,7 +6,7 @@ export default function Home({ recentPosts }) {
   useEffect(() => {
     console.log('Running useEffect for Google Analytics');
     const trackingId = process.env.REACT_APP_GA_TRACKING_ID;
-  
+   
     console.log('Google Analytics Tracking ID:', trackingId);
   
     if (trackingId) {
