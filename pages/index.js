@@ -17,7 +17,7 @@ export default function Home({ recentPosts }) {
         console.log('Pageview event sent for:', window.location.pathname);
       } catch (error) {
         console.error('Error initializing Google Analytics:', error);
-      } 
+      }
     } else {
       console.error('Google Analytics tracking ID is not defined.');
     }
