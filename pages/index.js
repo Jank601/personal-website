@@ -1,27 +1,6 @@
 import { getAllPosts } from '../lib/posts';
-import { useEffect } from 'react';
-import ReactGA from 'react-ga4'; 
 
-export default function Home({ recentPosts }) { 
-  useEffect(() => {
-    console.log('Running useEffect for Google Analytics');
-    const trackingId = process.env.REACT_APP_GA_TRACKING_ID;
-   
-    console.log('Google Analytics Tracking ID:', trackingId);
-   
-    if (trackingId) {
-      try {
-        ReactGA.initialize(trackingId);
-        console.log('Google Analytics initialized with Tracking ID:', trackingId);
-        ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
-        console.log('Pageview event sent for:', window.location.pathname);
-      } catch (error) {
-        console.error('Error initializing Google Analytics:', error);
-      } 
-    } else {
-      console.error('Google Analytics tracking ID is not defined.');
-    }
-  }, []);
+export default function Home({ recentPosts }) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Navigation Bar */}
