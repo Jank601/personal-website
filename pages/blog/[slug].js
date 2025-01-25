@@ -50,7 +50,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   console.log('Attempting to get post with slug:', params.slug); // Debug log
-  const post = getPostBySlug(params.slug);
+  
+  const post = await getPostBySlug(params.slug);
+
   
   if (!post) {
     console.log('Post not found for slug:', params.slug); // Debug log
