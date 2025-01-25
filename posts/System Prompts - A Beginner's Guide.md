@@ -4,8 +4,6 @@ date: '2024-01-17'
 excerpt: Master the art of system prompts with this beginner's guide to enhancing LLM interactions. Learn the essentials of crafting effective system prompts for your AI projects.
 ---
 
-# System Prompts - A Beginner's Guide
-
 System prompts are the first step to setting the stage for your conversation with an LLM. Projects will live or die based on their system prompt, because if the LLM doesn't have the context, it will be even more unpredictable. When you use ChatGPT or any other tool, your questions are being sent alongside a generic system prompt created by the company. 
 
 When you want to create your own tool, a big task is creating a system prompt. Getting this right will improve the user experience as well as simplify your tech stack. A good system prompt will save you time, money, and frustration. 
