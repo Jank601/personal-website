@@ -1,6 +1,6 @@
 ---
 title: System Prompts - A Beginner's Guide
-date: '2024-01-17'
+date: '2025-01-17'
 excerpt: Master the art of system prompts with this beginner's guide to enhancing LLM interactions. Learn the essentials of crafting effective system prompts for your AI projects.
 ---
 
