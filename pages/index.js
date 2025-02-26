@@ -1,4 +1,5 @@
 import { getAllPosts } from '../lib/posts';
+import ChatWidget from '../components/ChatWidget';
 
 export default function Home({ recentPosts }) {
   return (
@@ -95,6 +96,7 @@ export default function Home({ recentPosts }) {
           </p>
         </section>
       </div>
+      <ChatWidget />
     </div>
   );
 }
