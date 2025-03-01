@@ -12,6 +12,7 @@ const ChatWidget = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState('');
   const [error, setError] = useState(null);
+  const [rateLimited, setRateLimited] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -39,6 +40,12 @@ const ChatWidget = () => {
         sessionId: sessionId
       })
     });
+
+    // Check specifically for 429 status
+    if (response.status === 429) {
+      setRateLimited(true);
+      throw new Error('RATE_LIMIT_EXCEEDED');
+    }
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -73,11 +80,21 @@ const ChatWidget = () => {
     } catch (error) {
       console.error('Chat error:', error);
       setError(error.message);
-      setMessages(prev => [...prev, {
-        type: 'error',
-        content: `Error: ${error.message}`,
-        timestamp: new Date().toISOString()
-      }]);
+      
+      // Check for rate limit error
+      if (error.message === 'RATE_LIMIT_EXCEEDED') {
+        setMessages(prev => [...prev, {
+          type: 'error',
+          content: "The total number of requests for today has exceeded the threshold. The threshold will be reset tomorrow. Thank you for trying the chat!",
+          timestamp: new Date().toISOString()
+        }]);
+      } else {
+        setMessages(prev => [...prev, {
+          type: 'error',
+          content: `Error: ${error.message}`,
+          timestamp: new Date().toISOString()
+        }]);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -194,6 +211,9 @@ const ChatWidget = () => {
     );
   };
 
+  // If rate limited, disable the input
+  const isInputDisabled = isLoading || rateLimited;
+
   return (
     <div className="fixed bottom-4 right-4 z-50">
       <button
@@ -262,13 +282,13 @@ const ChatWidget = () => {
                 type="text"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-                placeholder="Type your message..."
-                disabled={isLoading}
+                placeholder={rateLimited ? "Chat limit reached for today" : "Type your message..."}
+                disabled={isInputDisabled}
                 className="flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:border-blue-500 disabled:bg-gray-100"
               />
               <button
                 type="submit"
-                disabled={isLoading || !inputText.trim()}
+                disabled={isInputDisabled || !inputText.trim()}
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-200"
               >
                 {isLoading ? (
@@ -292,6 +312,11 @@ const ChatWidget = () => {
                 )}
               </button>
             </div>
+            {rateLimited && (
+              <p className="text-xs text-red-600 mt-2">
+                Daily request limit reached. Please try again tomorrow.
+              </p>
+            )}
           </form>
         </div>
       )}

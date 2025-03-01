@@ -24,11 +24,16 @@ export default function Home({ recentPosts }) {
           <h1 className="text-5xl font-bold mb-8 text-gray-900 leading-relaxed">
             Eli Yagel
           </h1>
-          <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            I am a highly motivated, energetic person always looking for new challenges, 
-            noticing where help is needed, and contributing to the goal. I am organized, 
-            creative, detail oriented and love to learn something new everyday. I enjoy 
-            life, family and friends, and I like to keep busy.
+          <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto text-center">
+            I am a data analyst with a passion for AI, constantly exploring innovative solutions and building intelligent systems.  
+            My work spans data-driven insights and AI-powered automation, including the chatbot on this site.  
+            <br /><br />
+            This website, like the chatbot, was built using AI and reflects my expertise in data analysis, cloud technologies, and generative AI.  
+            The chatbot pulls knowledge from my public GitHub repositories, blog posts, and CV using  
+            Retrieval-Augmented Generation (RAG) to provide answers based on my real-world experience.  
+            <br /><br />
+            <strong>Curious to learn more?</strong>  
+            Try out the chatbot and ask about my projects, experience, or the meaning of life!  
           </p>
         </header>
 
@@ -92,7 +97,7 @@ export default function Home({ recentPosts }) {
 
         <section className="text-center">
           <p className="text-lg text-gray-600">
-            Currently open to new opportunities and collaborations
+            See an issue? have any feedback? <a href="mailto: eli.yagel.work@gmail.com" className="text-blue-600 hover:text-blue-800 font-medium">Contact me</a>
           </p>
         </section>
       </div>
